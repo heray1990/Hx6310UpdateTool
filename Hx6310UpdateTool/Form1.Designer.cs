@@ -115,6 +115,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textBoxLog);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hx6310 升级工具";

@@ -86,12 +86,12 @@ namespace Hx6310UpdateTool
             if (hwCrc == crcCheck)
             {
                 LogPrinter.SaveLogInFile("CRC PASS...");
-                result = "CRC PASS...";                
+                result = "升级成功...";                
             }
             else
             {
                 LogPrinter.SaveLogInFile("CRC NG...");
-                result = "CRC NG...";
+                result = "升级失败...";
             }
             return true;
         }

@@ -90,7 +90,7 @@ namespace Hx6310UpdateTool
             updateManager.onUpdateProgress += new UpdateManager.dUpdateProgress(updateManager_onUpdateProgress);
             isDone = updateManager.Update();
             if (isDone)
-                MessageBox.Show(UpdateManager.result);
+                MessageBox.Show(UpdateManager.result, "Result");
         }
 
         private void updateManager_onUpdateProgress(int total, int current)
