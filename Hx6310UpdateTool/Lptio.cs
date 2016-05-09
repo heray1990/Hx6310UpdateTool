@@ -9,6 +9,7 @@ namespace Hx6310UpdateTool
 {
     class Lptio
     {
+        #region CONSTANT_VALUES
         // I2C Tool Device Constant
         public const int DEVICE_LPT = 0;
         public const int DEVICE_U2C = 1;
@@ -40,7 +41,9 @@ namespace Hx6310UpdateTool
         public const int ASIC_SUB_TYPE_ECO_2 = 4;
         public const int ASIC_SUB_TYPE_ECO_3 = 5;
         public const int ASIC_SUB_TYPE_MP = 6;
+        #endregion
 
+        #region LOAD_LIBRARIES
         [DllImport("lptio.dll")]
         public static extern void I2c_Start();
         [DllImport("lptio.dll")]
@@ -60,7 +63,7 @@ namespace Hx6310UpdateTool
         [DllImport("lptio.dll")]
         public static extern int Lpt_Output(long dat);
         [DllImport("lptio.dll")]
-        public static extern byte LptioSetDevice(long device);
+        public static extern byte LptioSetDevice(int device);
         [DllImport("lptio.dll")]
         public static extern long Pll_Clock(long f, long base_f, ref int m, ref int r, ref int n);
         [DllImport("lptio.dll")]
@@ -72,11 +75,11 @@ namespace Hx6310UpdateTool
         [DllImport("lptio.dll")]
         public static extern void uart_disconnect();
         [DllImport("lptio.dll")]
-        public static extern byte I2cWriteData(byte device, ref byte cmd, long cmdlen, ref byte wdat, long wdatlen);
+        public static extern byte I2cWriteData(byte device, ref byte cmd, int cmdlen, ref byte wdat, int wdatlen);
         [DllImport("lptio.dll")]
-        public static extern byte I2cReadData(byte device, ref byte cmd, long cmdlen, ref byte rdat, long rdatlen);
+        public static extern byte I2cReadData(byte device, ref byte cmd, int cmdlen, ref byte rdat, int rdatlen);
         [DllImport("lptio.dll")]
-        public static extern void I2cSetClockRate(long rate);
+        public static extern void I2cSetClockRate(int rate);
         [DllImport("lptio.dll")]
         public static extern void SetPortVal(byte addr, byte val);
         [DllImport("lptio.dll")]
@@ -101,5 +104,6 @@ namespace Hx6310UpdateTool
         public static extern long AndesIsp(ref byte buf, long leng);
         [DllImport("lptio.dll")]
         public static extern byte CRC8(byte dat, byte crc);
+        #endregion
     }
 }
