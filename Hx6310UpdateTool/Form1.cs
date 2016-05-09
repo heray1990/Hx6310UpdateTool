@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Threading;
 
 namespace Hx6310UpdateTool
 {
@@ -15,7 +17,11 @@ namespace Hx6310UpdateTool
         public Form1()
         {
             InitializeComponent();
+            progressValue = 0;
         }
+
+        private static int progressValue;
+        public static string fileName;
 
         #region constANT_VALUES
         public const byte VCP_BRIGHTNESS = 0x10;
@@ -50,21 +56,61 @@ namespace Hx6310UpdateTool
 
             Lptio.I2cSetClockRate(50);
             ddcM2Reg.DDCSetVcp(VCP_DEBUG, 1);
+            
+            buttonUpdate.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ddcM2Reg.DDCSetVcp(VCP_INPUT_SRC, 3);
+            string binPath = Path.GetDirectoryName(Application.ExecutablePath);
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = binPath;
+            openFileDialog1.Filter = "bin files (*.bin)|*.bin|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog1.FileName;
+                fileName = textBox1.Text;
+            }
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            ddcM2Reg.DDCSetVcp(VCP_INPUT_SRC, 2);
+            new Thread(new ThreadStart(StartUpdate)).Start();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public void StartUpdate()
         {
-            ddcM2Reg.DDCSetVcp(VCP_INPUT_SRC, 1);
+            bool isDone = false;
+            UpdateManager updateManager = new UpdateManager();
+            updateManager.onUpdateProgress += new UpdateManager.dUpdateProgress(updateManager_onUpdateProgress);
+            isDone = updateManager.Update();
+            if (isDone)
+                MessageBox.Show(UpdateManager.result);
+        }
+
+        private void updateManager_onUpdateProgress(int total, int current)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new UpdateManager.dUpdateProgress(updateManager_onUpdateProgress), new object[] { total, current });
+            }
+            else
+            {
+                this.progressBarUpdate.Maximum = total;
+                this.progressBarUpdate.Value = current;
+                int value = (int)(((double)current / (double)total) * 100);
+
+                if (value != progressValue)
+                {
+                    progressValue = value;
+                    LogPrinter.ShowLog(textBoxLog, progressValue.ToString() + "%");
+                }                
+            }
         }
     }
 }

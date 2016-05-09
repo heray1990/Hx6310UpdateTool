@@ -93,11 +93,11 @@ namespace Hx6310UpdateTool
         [DllImport("lptio.dll")]
         public static extern void AndesBurstMode();
         [DllImport("lptio.dll")]
-        public static extern void AndesWriteSpiData(long addr, ref byte buf, long leng);
+        public static extern void AndesWriteSpiData(int addr, ref byte buf, int leng);
         [DllImport("lptio.dll")]
         public static extern void AndesNormalMode();
         [DllImport("lptio.dll")]
-        public static extern byte AndesReadCrc(long addr, long leng);
+        public static extern byte AndesReadCrc(int addr, int leng);
         [DllImport("lptio.dll")]
         public static extern void AndesStartMcu();
         [DllImport("lptio.dll")]

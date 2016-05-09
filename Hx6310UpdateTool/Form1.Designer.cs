@@ -30,9 +30,12 @@
         {
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.buttonConnect = new System.Windows.Forms.Button();
+            this.progressBarUpdate = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxLog
@@ -48,56 +51,75 @@
             // 
             // buttonConnect
             // 
-            this.buttonConnect.Location = new System.Drawing.Point(12, 12);
+            this.buttonConnect.Location = new System.Drawing.Point(191, 94);
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(75, 23);
             this.buttonConnect.TabIndex = 6;
-            this.buttonConnect.Text = "连接";
+            this.buttonConnect.Text = "连接电视";
             this.buttonConnect.UseVisualStyleBackColor = true;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
+            // progressBarUpdate
+            // 
+            this.progressBarUpdate.Location = new System.Drawing.Point(6, 47);
+            this.progressBarUpdate.Name = "progressBarUpdate";
+            this.progressBarUpdate.Size = new System.Drawing.Size(165, 23);
+            this.progressBarUpdate.TabIndex = 10;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 41);
+            this.button1.Location = new System.Drawing.Point(179, 18);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "HDMI1";
+            this.button1.TabIndex = 11;
+            this.button1.Text = "浏览";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // textBox1
             // 
-            this.button2.Location = new System.Drawing.Point(106, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "HDMI2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.textBox1.Location = new System.Drawing.Point(6, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(165, 21);
+            this.textBox1.TabIndex = 12;
             // 
-            // button3
+            // buttonUpdate
             // 
-            this.button3.Location = new System.Drawing.Point(197, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "HDMI3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonUpdate.Enabled = false;
+            this.buttonUpdate.Location = new System.Drawing.Point(179, 47);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 13;
+            this.buttonUpdate.Text = "升级";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.progressBarUpdate);
+            this.groupBox1.Controls.Add(this.buttonUpdate);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(260, 76);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "升级 Hx6310";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textBoxLog);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Hx6310 升级工具";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,9 +129,11 @@
 
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.Button buttonConnect;
+        private System.Windows.Forms.ProgressBar progressBarUpdate;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
